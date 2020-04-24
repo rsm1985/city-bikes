@@ -2,6 +2,7 @@ import {
   GET_STATIONS,
   TOGGLE_STATION_LOADING,
   ADD_LIKED_STATION,
+  REMOVE_LIKED_STATION,
 } from "redux/actionTypes";
 
 const initialState = {
@@ -30,7 +31,16 @@ export const stationsReducer = (state: any = initialState, action: any) => {
         ...state,
       };
     }
-
+    case REMOVE_LIKED_STATION: {
+      const filtered = state.likedStations.filter(
+        (item: any) => payload.id !== item.id
+      );
+      console.log("REMOVE_LIKED_STATION filtered", filtered);
+      return {
+        ...state,
+        likedStations: filtered,
+      };
+    }
     default: {
       return {
         ...state,

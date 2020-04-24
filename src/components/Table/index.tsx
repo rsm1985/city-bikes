@@ -1,6 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { actionAddLikedStation } from "redux/stations/actions";
+import {
+  actionAddLikedStation,
+  actionRemoveLikedStation,
+} from "redux/stations/actions";
 import "./styles.scss";
 
 interface INetworkItem {
@@ -24,7 +27,7 @@ export default function Table(props: OwnProps) {
   const { data, onRowClick } = props;
   const toggleLikedStation = (item: INetworkItem) => {
     if (likedStations.some((element: INetworkItem) => element.id === item.id)) {
-      //remove station
+      dispatch(actionRemoveLikedStation(item));
     } else {
       dispatch(actionAddLikedStation(item));
     }
