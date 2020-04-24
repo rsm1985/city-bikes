@@ -1,0 +1,12 @@
+.table {
+  border-bottom: 1px solid grey;
+  &__row {
+    padding: 10px;
+    border: 1px solid grey;
+    border-bottom: none;
+    cursor: pointer;
+    &:hover {
+      background-color: lightgrey;
+    }
+  }
+}

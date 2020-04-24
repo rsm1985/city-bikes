@@ -1,5 +1,6 @@
 import React from "react";
 import { thunkGetStations } from "redux/stations/thunk";
+import "./styles.scss";
 
 interface INetworkItem {
   company: string[];
