@@ -43,8 +43,8 @@ class App extends React.Component<IProps, any> {
         <div className="app">
           <div className="app__title">CityBikes Networks & Stations</div>
             <div className="app__table">
-              {networks.data ? <div>
-                <div className="app__table-header">Networks</div>
+              {networks.data && networks.activeNetwork ? <div>
+                <div className="app__table-header">Networks. Active network: {networks.activeNetwork.title}</div>
                   <Table data={networks.data} onRowClick={this.onNetworkClick}/>
                 </div> : <img className="app__spinner" src={Spinner}/>
               }
