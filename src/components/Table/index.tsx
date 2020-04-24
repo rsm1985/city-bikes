@@ -3,16 +3,9 @@ import React from "react";
 import "./styles.scss";
 
 interface INetworkItem {
-  company: string[];
-  href: string;
   id: string;
-  name: string;
-  location: {
-    city: string;
-    country: string;
-    latitude: number;
-    longitude: number;
-  };
+  title: string;
+  href: string;
 }
 interface OwnProps {
   data: INetworkItem[];
@@ -24,9 +17,9 @@ export default function Table(props: OwnProps) {
   return (
     <div className="table">
       {data &&
-        data.map(({ id, name, company, href, location }: INetworkItem) => (
+        data.map(({ id, title, href }: INetworkItem) => (
           <div className="table__row" key={id} onClick={() => onRowClick(href)}>
-            {`${company}, ${location.city}, ${location.country}`}
+            {title}
           </div>
         ))}
     </div>
