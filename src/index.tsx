@@ -4,8 +4,9 @@ import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./redux/reducers";
-import App from "./App";
+import App from "components/App";
 import * as serviceWorker from "./serviceWorker";
+import "stylesheets/styles.scss";
 
 const composeEnhancers =
   (typeof window !== "undefined" &&
