@@ -9,19 +9,23 @@ interface INetworkItem {
 }
 interface OwnProps {
   data: INetworkItem[];
-  onRowClick: (href: string) => void;
+  onRowClick: (href: string, id: string) => void;
 }
 export default function Table(props: OwnProps) {
   const { data, onRowClick } = props;
-
-  return (
+  return data && data.length ? (
     <div className="table">
-      {data &&
-        data.map(({ id, title, href }: INetworkItem) => (
-          <div className="table__row" key={id} onClick={() => onRowClick(href)}>
-            {title}
-          </div>
-        ))}
+      {data.map(({ id, title, href }: INetworkItem) => (
+        <div
+          className="table__row"
+          key={id}
+          onClick={() => onRowClick(href, id)}
+        >
+          {title}
+        </div>
+      ))}
     </div>
+  ) : (
+    <div>No stations</div>
   );
 }

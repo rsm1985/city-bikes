@@ -8,7 +8,7 @@ import "./styles.scss";
 
 interface DispatchProps {
   getNetworks: () => void;
-  getStations: (href: string) => void;
+  getStations: (href: string, id: string) => void;
 }
 
 
@@ -61,7 +61,7 @@ const mapDispatchToProps = (dispatch: any): DispatchProps => ({
   getNetworks: () => {
     dispatch(thunkGetNetworks());
   },
-  getStations: (href: string) => {
+  getStations: (href: string, id: string) => {
     dispatch(thunkGetStations(href))
   }
 });
