@@ -14,6 +14,7 @@ export const thunkGetStations = (item: any) => async (dispatch: any) => {
           id,
           href: "",
           title: name,
+          like: false,
         })
       );
       dispatch(actionGetStations(data));

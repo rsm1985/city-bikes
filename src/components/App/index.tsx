@@ -12,6 +12,7 @@ interface INetworkItem {
   title: string;
   href: string;
 }
+
 interface DispatchProps {
   getNetworks: () => void;
   getStations: (item: INetworkItem) => void;
@@ -31,29 +32,36 @@ class App extends React.Component<IProps, any> {
     const {getNetworks} = this.props;
     getNetworks();
   }
+
   onNetworkClick = (item: INetworkItem) => {
     const {getStations, setActiveNetwork} = this.props;
     setActiveNetwork(item);
     getStations(item);
   }
+
   render() {
     const {networks, stations} = this.props;
     return (
       <div className="container">
         <div className="app">
           <div className="app__title">CityBikes Networks & Stations</div>
-            <div className="app__table">
-              {networks.data && networks.activeNetwork ? <div>
-                <div className="app__table-header">Networks. Active network: {networks.activeNetwork.title}</div>
-                  <Table data={networks.data} onRowClick={this.onNetworkClick}/>
-                </div> : <img className="app__spinner" src={Spinner}/>
-              }
+          <div className="app__table">
+            {networks.data && networks.activeNetwork ? <div>
+              <div className="app__table-header">
+                <p>Networks.</p>
+                <p>Active network: {networks.activeNetwork.title}</p>
+              </div>
+              <Table data={networks.data} onRowClick={this.onNetworkClick}/>
+            </div> : <img className="app__spinner" src={Spinner} alt="spinner"/>
+            }
           </div>
           <div className="app__table">
-            {!stations.isStationsLoading  ? <div>
-              <div className="app__table-header">Stations. Total at the network: {stations.data && stations.data.length}</div>
-              <Table data={stations.data} onRowClick={()=>{}}/>
-            </div> : <img className="app__spinner" src={Spinner}/>
+            {!stations.isStationsLoading && stations.data ? <div>
+              <div className="app__table-header">Stations. Total at the
+                network: {stations.data && stations.data.length}</div>
+              <Table data={stations.data} onRowClick={() => {
+              }}/>
+            </div> : <img className="app__spinner" src={Spinner} alt="spinner"/>
             }
           </div>
         </div>
