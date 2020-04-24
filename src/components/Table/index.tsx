@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import "./styles.scss";
 
@@ -12,14 +13,17 @@ interface OwnProps {
   onRowClick: (href: string, id: string) => void;
 }
 export default function Table(props: OwnProps) {
+  const networks = useSelector((state: any) => state.citybikesNetworks);
+  const { activeNetworkId } = networks;
+  console.log("activeNetworkId", activeNetworkId);
   const { data, onRowClick } = props;
   return data && data.length ? (
     <div className="table">
       {data.map(({ id, title, href }: INetworkItem) => (
         <div
-          className="table__row"
           key={id}
           onClick={() => onRowClick(href, id)}
+          className={`table__row ${activeNetworkId === id ? "active" : ""}`}
         >
           {title}
         </div>

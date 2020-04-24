@@ -8,5 +8,8 @@
     &:hover {
       background-color: lightgrey;
     }
+    &.active {
+      background-color: grey;
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { GET_NETWORKS } from "redux/actionTypes";
+import { GET_NETWORKS, SET_ACTIVE_NETWORK } from "redux/actionTypes";
 
 const initialState = {};
 
@@ -8,6 +8,12 @@ export const networksReducer = (state: {} = initialState, action: any) => {
     case GET_NETWORKS: {
       return {
         data: payload,
+      };
+    }
+    case SET_ACTIVE_NETWORK: {
+      return {
+        ...state,
+        activeNetworkId: payload,
       };
     }
     default: {

@@ -1,5 +1,8 @@
 import axios from "axios";
-import { actionGetNetworks } from "redux/networks/actions";
+import {
+  actionGetNetworks,
+  actionSetActiveNetwork,
+} from "redux/networks/actions";
 import { thunkGetStations } from "redux/stations/thunk";
 
 export const thunkGetNetworks = () => async (dispatch: any, getState: any) => {
@@ -14,9 +17,11 @@ export const thunkGetNetworks = () => async (dispatch: any, getState: any) => {
           title: `${company}, ${location.city}, ${location.country}`,
         }));
       dispatch(actionGetNetworks(data));
+
       const state = getState();
       if (!state.citybikesStations.data) {
         dispatch(thunkGetStations(data[0].href));
+        dispatch(actionSetActiveNetwork(data[0].id));
       }
     }
   } catch (err) {
