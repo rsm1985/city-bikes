@@ -20,7 +20,6 @@ class App extends React.Component<IProps, any> {
   componentDidMount() {
     const {getNetworks} = this.props;
     getNetworks();
-
   }
 
   render() {
