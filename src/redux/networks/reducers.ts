@@ -1,18 +1,17 @@
-const initialState = {}
+const initialState = {};
 
 export const networksReducer = (state: {} = initialState, action: any) => {
-  const {payload, type} = action;
+  const { payload, type } = action;
   switch (type) {
-    case "OK": {
+    case "GET_NETWORKS": {
       return {
-        ...state,
-        payload
-      }
+        data: payload,
+      };
     }
     default: {
       return {
-        ...state
-      }
+        ...state,
+      };
     }
   }
-}
+};
