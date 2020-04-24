@@ -39,11 +39,11 @@ class App extends React.Component<IProps, any> {
               }
           </div>
           <div className="app__table">
-            {/*{stations && <div>*/}
-              {/*<div className="app__table-header"> Stations</div>*/}
-              {/*<Table data={stations.data} onRowClick={()=>{}}/>*/}
-            {/*</div>*/}
-            {/*}*/}
+            {stations && <div>
+              <div className="app__table-header">Stations</div>
+              <Table data={stations.data} onRowClick={()=>{}}/>
+            </div>
+            }
           </div>
         </div>
       </div>
