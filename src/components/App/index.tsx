@@ -50,8 +50,8 @@ class App extends React.Component<IProps, any> {
               }
           </div>
           <div className="app__table">
-            {stations.data ? <div>
-              <div className="app__table-header">Stations</div>
+            {!stations.isStationsLoading  ? <div>
+              <div className="app__table-header">Stations. Total at the network: {stations.data && stations.data.length}</div>
               <Table data={stations.data} onRowClick={()=>{}}/>
             </div> : <img className="app__spinner" src={Spinner}/>
             }

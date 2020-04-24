@@ -1,7 +1,11 @@
 import axios from "axios";
-import { actionGetStations } from "redux/stations/actions";
+import {
+  actionGetStations,
+  actionToggleStationLoading,
+} from "redux/stations/actions";
 
 export const thunkGetStations = (item: any) => async (dispatch: any) => {
+  dispatch(actionToggleStationLoading(true));
   try {
     const result = await axios.get(`http://api.citybik.es${item.href}`);
     if (result) {
@@ -16,5 +20,7 @@ export const thunkGetStations = (item: any) => async (dispatch: any) => {
     }
   } catch (err) {
     console.log("Error: ", err);
+  } finally {
+    dispatch(actionToggleStationLoading(false));
   }
 };
