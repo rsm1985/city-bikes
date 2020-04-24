@@ -20,4 +20,9 @@
     overflow-y: auto;
     overflow-x: hidden;
   }
+  &__table-header {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 700;
+  }
 }

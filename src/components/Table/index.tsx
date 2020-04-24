@@ -1,5 +1,5 @@
 import React from "react";
-import { thunkGetStations } from "redux/stations/thunk";
+
 import "./styles.scss";
 
 interface INetworkItem {
@@ -16,21 +16,16 @@ interface INetworkItem {
 }
 interface OwnProps {
   data: INetworkItem[];
+  onRowClick: (href: string) => void;
 }
 export default function Table(props: OwnProps) {
-  const { data } = props;
-  const getStations = (href: string) => {
-    thunkGetStations(href);
-  };
+  const { data, onRowClick } = props;
+
   return (
     <div className="table">
       {data &&
         data.map(({ id, name, company, href, location }: INetworkItem) => (
-          <div
-            className="table__row"
-            key={id}
-            onClick={() => getStations(href)}
-          >
+          <div className="table__row" key={id} onClick={() => onRowClick(href)}>
             {`${company}, ${location.city}, ${location.country}`}
           </div>
         ))}
