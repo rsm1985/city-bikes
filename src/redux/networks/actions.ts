@@ -5,7 +5,7 @@ export const actionGetNetworks = (data: any) => ({
   payload: data,
 });
 
-export const actionSetActiveNetwork = (id: string) => ({
+export const actionSetActiveNetwork = (data: any) => ({
   type: SET_ACTIVE_NETWORK,
-  payload: id,
+  payload: data,
 });

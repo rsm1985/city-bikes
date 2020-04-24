@@ -10,22 +10,23 @@ interface INetworkItem {
 }
 interface OwnProps {
   data: INetworkItem[];
-  onRowClick: (href: string, id: string) => void;
+  onRowClick: (data: INetworkItem) => void;
 }
 export default function Table(props: OwnProps) {
   const networks = useSelector((state: any) => state.citybikesNetworks);
-  const { activeNetworkId } = networks;
-  console.log("activeNetworkId", activeNetworkId);
+  const { activeNetwork } = networks;
   const { data, onRowClick } = props;
-  return data && data.length ? (
+  return data && activeNetwork ? (
     <div className="table">
-      {data.map(({ id, title, href }: INetworkItem) => (
+      {data.map((item: INetworkItem) => (
         <div
-          key={id}
-          onClick={() => onRowClick(href, id)}
-          className={`table__row ${activeNetworkId === id ? "active" : ""}`}
+          key={item.id}
+          onClick={() => onRowClick(item)}
+          className={`table__row ${
+            activeNetwork.id === item.id ? "active" : ""
+          }`}
         >
-          {title}
+          {item.title}
         </div>
       ))}
     </div>

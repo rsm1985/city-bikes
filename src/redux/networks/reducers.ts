@@ -13,7 +13,7 @@ export const networksReducer = (state: {} = initialState, action: any) => {
     case SET_ACTIVE_NETWORK: {
       return {
         ...state,
-        activeNetworkId: payload,
+        activeNetwork: payload,
       };
     }
     default: {

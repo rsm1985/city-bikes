@@ -4,13 +4,18 @@ import {thunkGetNetworks} from "redux/networks/thunk";
 import {thunkGetStations} from "redux/stations/thunk";
 import {actionSetActiveNetwork} from "redux/networks/actions";
 import Table from "components/Table";
+import Spinner from 'images/spinner.gif'
 import "./styles.scss";
 
-
+interface INetworkItem {
+  id: string;
+  title: string;
+  href: string;
+}
 interface DispatchProps {
   getNetworks: () => void;
-  getStations: (href: string, id: string) => void;
-  setActiveNetwork: (id: string) => void;
+  getStations: (item: INetworkItem) => void;
+  setActiveNetwork: (item: INetworkItem) => void;
 }
 
 
@@ -26,10 +31,10 @@ class App extends React.Component<IProps, any> {
     const {getNetworks} = this.props;
     getNetworks();
   }
-  onNetworkClick = (href: string, id: string) => {
+  onNetworkClick = (item: INetworkItem) => {
     const {getStations, setActiveNetwork} = this.props;
-    getStations(href, id);
-    setActiveNetwork(id)
+    setActiveNetwork(item);
+    getStations(item);
   }
   render() {
     const {networks, stations} = this.props;
@@ -38,17 +43,17 @@ class App extends React.Component<IProps, any> {
         <div className="app">
           <div className="app__title">CityBikes Networks & Stations</div>
             <div className="app__table">
-              {networks && <div>
+              {networks.data ? <div>
                 <div className="app__table-header">Networks</div>
                   <Table data={networks.data} onRowClick={this.onNetworkClick}/>
-                </div>
+                </div> : <img className="app__spinner" src={Spinner}/>
               }
           </div>
           <div className="app__table">
-            {stations && <div>
+            {stations.data ? <div>
               <div className="app__table-header">Stations</div>
               <Table data={stations.data} onRowClick={()=>{}}/>
-            </div>
+            </div> : <img className="app__spinner" src={Spinner}/>
             }
           </div>
         </div>
@@ -67,11 +72,11 @@ const mapDispatchToProps = (dispatch: any): DispatchProps => ({
   getNetworks: () => {
     dispatch(thunkGetNetworks());
   },
-  getStations: (href: string, id: string) => {
-    dispatch(thunkGetStations(href))
+  getStations: (item: INetworkItem) => {
+    dispatch(thunkGetStations(item))
   },
-  setActiveNetwork: (id: string) => {
-    dispatch(actionSetActiveNetwork(id))
+  setActiveNetwork: (item: INetworkItem) => {
+    dispatch(actionSetActiveNetwork(item))
   }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(App);

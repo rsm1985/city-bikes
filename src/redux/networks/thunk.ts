@@ -20,8 +20,8 @@ export const thunkGetNetworks = () => async (dispatch: any, getState: any) => {
 
       const state = getState();
       if (!state.citybikesStations.data) {
-        dispatch(thunkGetStations(data[0].href));
-        dispatch(actionSetActiveNetwork(data[0].id));
+        dispatch(thunkGetStations(data[0]));
+        dispatch(actionSetActiveNetwork(data[0]));
       }
     }
   } catch (err) {

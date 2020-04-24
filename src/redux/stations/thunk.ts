@@ -1,9 +1,9 @@
 import axios from "axios";
 import { actionGetStations } from "redux/stations/actions";
 
-export const thunkGetStations = (href: string) => async (dispatch: any) => {
+export const thunkGetStations = (item: any) => async (dispatch: any) => {
   try {
-    const result = await axios.get(`http://api.citybik.es${href}`);
+    const result = await axios.get(`http://api.citybik.es${item.href}`);
     if (result) {
       const data = result.data.network.stations.map(
         ({ id, href, name }: any) => ({
